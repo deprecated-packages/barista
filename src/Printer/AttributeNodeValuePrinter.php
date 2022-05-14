@@ -7,7 +7,9 @@ namespace Barista\Printer;
 use Latte\Compiler\Nodes\FragmentNode;
 use Latte\Compiler\Nodes\Html\AttributeNode;
 use Latte\Compiler\Nodes\Html\QuotedValue;
+use Latte\Compiler\Nodes\Php\Expression\VariableNode;
 use Latte\Compiler\Nodes\TextNode;
+use Latte\Essential\Nodes\PrintNode;
 
 final class AttributeNodeValuePrinter
 {
@@ -27,11 +29,17 @@ final class AttributeNodeValuePrinter
         $attributeContent = '';
 
         foreach ($fragmentNode->children as $childNode) {
-            if (! $childNode instanceof TextNode) {
+            if ($childNode instanceof TextNode) {
+                $attributeContent .= $childNode->content;
                 continue;
             }
 
-            $attributeContent .= $childNode->content;
+            if ($childNode instanceof PrintNode) {
+                if($childNode->expression instanceof VariableNode) {
+                    $attributeContent .= '{$' . $childNode->expression->name . '}';
+                }
+            }
+
         }
 
         return $attributeContent;

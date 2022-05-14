@@ -9,5 +9,6 @@ use Barista\LatteParser\LatteParser;
 
 $latteAnalyzer = new LatteAnalyzer(new LatteParser());
 $latteAnalyzer->run([
-    __DIR__ . '/../fixture/a-with-attributes.latte'
+    __DIR__ . '/../fixture/a-with-attributes.latte',
+    __DIR__ . '/../fixture/with-variable-inside.latte',
 ]);
