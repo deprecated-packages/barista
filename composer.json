@@ -4,7 +4,8 @@
     "require": {
         "php": "^8.1",
         "latte/latte": "3.0.x-dev",
-        "nette/utils": "^3.2"
+        "nette/utils": "^3.2",
+        "webmozart/assert": "^1.10"
     },
     "autoload": {
         "psr-4": {
@@ -17,7 +18,7 @@
         "phpstan/phpstan": "^1.6"
     },
     "scripts": {
-        "check-cs": "vendor/bin/ecs --ansi --fix",
-        "fix-cs": "vendor/bin/ecs --ansi"
+        "check-cs": "vendor/bin/ecs --ansi",
+        "fix-cs": "vendor/bin/ecs --ansi --fix"
     }
 }

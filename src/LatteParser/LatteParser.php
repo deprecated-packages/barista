@@ -9,6 +9,7 @@ use Latte\Compiler\TemplateLexer;
 use Latte\Compiler\TemplateParser;
 use Latte\Essential\CoreExtension;
 use Latte\Sandbox\SandboxExtension;
+use Nette\Utils\FileSystem;
 
 final class LatteParser
 {
@@ -24,6 +25,12 @@ final class LatteParser
         foreach ($extensions as $extension) {
             $this->templateParser->addTags($extension->getTags());
         }
+    }
+
+    public function parseFile(string $filePath): TemplateNode
+    {
+        $fileContent = FileSystem::read($filePath);
+        return $this->parseCode($fileContent);
     }
 
     public function parseCode(string $code): TemplateNode
