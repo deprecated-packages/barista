@@ -1,0 +1,17 @@
+{
+    "name": "barista/barista",
+    "description": "The Barista explores every Latte (file) for strict quality",
+    "require": {
+        "php": "^8.1",
+        "latte/latte": "3.0.x-dev",
+        "nette/utils": "^3.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "Barista\\": "src"
+        }
+    },
+    "require-dev": {
+        "tracy/tracy": "^2.9"
+    }
+}
