@@ -1,5 +1,6 @@
 {
     "name": "barista/barista",
+    "license": "MIT",
     "description": "The Barista explores every Latte (file) for strict quality",
     "require": {
         "php": "^8.1",
