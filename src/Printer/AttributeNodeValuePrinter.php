@@ -35,11 +35,12 @@ final class AttributeNodeValuePrinter
             }
 
             if ($childNode instanceof PrintNode) {
-                if($childNode->expression instanceof VariableNode) {
-                    $attributeContent .= '{$' . $childNode->expression->name . '}';
+                if ($childNode->expression instanceof VariableNode) {
+                    if (is_string($childNode->expression->name)) {
+                        $attributeContent .= '{$' . $childNode->expression->name . '}';
+                    }
                 }
             }
-
         }
 
         return $attributeContent;
