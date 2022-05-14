@@ -13,5 +13,9 @@
     },
     "require-dev": {
         "tracy/tracy": "^2.9"
+    },
+    "scripts": {
+        "check-cs": "vendor/bin/ecs --ansi --fix",
+        "fix-cs": "vendor/bin/ecs --ansi"
     }
 }
