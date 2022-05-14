@@ -11,6 +11,8 @@ use Latte\Compiler\NodeTraverser;
 
 /**
  * Same as native one, just object oriented
+ *
+ * @see \Barista\Tests\NodeTraverser\LatteNodeTraverserTest
  */
 final class LatteNodeTraverser
 {

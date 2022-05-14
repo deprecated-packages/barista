@@ -13,10 +13,16 @@
             "Barista\\": "src"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Barista\\Tests\\": "tests"
+        }
+    },
     "require-dev": {
         "tracy/tracy": "^2.9",
         "symplify/easy-coding-standard": "^10.2",
-        "phpstan/phpstan": "^1.6"
+        "phpstan/phpstan": "^1.6",
+        "phpunit/phpunit": "^9.5"
     },
     "scripts": {
         "check-cs": "vendor/bin/ecs --ansi",

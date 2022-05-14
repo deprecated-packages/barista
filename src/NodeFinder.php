@@ -7,6 +7,9 @@ namespace Barista;
 use Latte\Compiler\Node;
 use Latte\Compiler\NodeTraverser;
 
+/**
+ * @see \Barista\Tests\NodeFinderTest
+ */
 final class NodeFinder
 {
     /**
