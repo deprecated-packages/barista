@@ -14,8 +14,8 @@ use Nette\Utils\FileSystem;
 final class LatteParser
 {
     public function __construct(
-        private $templateLexer = new TemplateLexer(),
-        private $templateParser = new TemplateParser(),
+        private readonly TemplateLexer $templateLexer = new TemplateLexer(),
+        private readonly TemplateParser $templateParser = new TemplateParser(),
     ) {
         $extensions = [
             new CoreExtension(),

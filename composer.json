@@ -19,6 +19,7 @@
     },
     "scripts": {
         "check-cs": "vendor/bin/ecs --ansi",
-        "fix-cs": "vendor/bin/ecs --ansi --fix"
+        "fix-cs": "vendor/bin/ecs --ansi --fix",
+        "phpstan": "vendor/bin/phpstan analyse"
     }
 }

@@ -19,5 +19,5 @@ interface LatteNodeVisitorInterface
     /**
      * @param TNode $node
      */
-    public function enterNode(Node $node);
+    public function enterNode(Node $node): int|null|Node;
 }

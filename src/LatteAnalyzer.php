@@ -19,7 +19,7 @@ final class LatteAnalyzer
     /**
      * @param string[] $filePaths
      */
-    public function run(array $filePaths)
+    public function run(array $filePaths): void
     {
         foreach ($filePaths as $filePath) {
             $templateNode = $this->latteParser->parseFile($filePath);

@@ -10,6 +10,9 @@ use Latte\Compiler\Node;
 use Latte\Compiler\Nodes\Html\AttributeNode;
 use Latte\Compiler\Nodes\TextNode;
 
+/**
+ * @implements LatteNodeVisitorInterface<AttributeNode>
+ */
 final class AttributeLatteNodeVisitor implements LatteNodeVisitorInterface
 {
     public function __construct(
@@ -25,21 +28,22 @@ final class AttributeLatteNodeVisitor implements LatteNodeVisitorInterface
     /**
      * @param AttributeNode $node
      */
-    public function enterNode(Node $node): void
+    public function enterNode(Node $node): int|null|Node
     {
         if (! $node->name instanceof TextNode) {
-            return;
+            return null;
         }
 
         $attributeName = $node->name->content;
         if (! str_starts_with($attributeName, 'data-')) {
-            return;
+            return null;
         }
 
         $attributeContent = $this->attributeNodeValuePrinter->print($node);
 
         // @todo analyse here
         dump($attributeContent);
-        die;
+
+        return null;
     }
 }
