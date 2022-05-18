@@ -13,4 +13,4 @@ services:
     # upgrader
     - Barista\LatteUpgrader
     - Barista\Upgrade\IfCurrentLatteSyntaxUpgrader
-    # @todo translate ugprader
+    - Barista\Upgrade\TranslateMacroLatteSyntaxUpgrader
