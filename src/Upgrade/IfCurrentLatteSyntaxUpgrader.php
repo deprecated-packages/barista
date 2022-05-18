@@ -26,9 +26,16 @@ final class IfCurrentLatteSyntaxUpgrader implements LatteSyntaxUpgraderInterface
                 // remove extra quotes if used
                 if (str_starts_with($condition, "'") && str_ends_with($condition, "'")) {
                     $condition = trim($condition, "'");
+                    $quoteChar = "'";
+                } elseif (str_starts_with($condition, '"') && str_ends_with($condition, '"')) {
+                    $condition = trim($condition, '"');
+                    $quoteChar = '"';
+                } else {
+                    // default
+                    $quoteChar = "'";
                 }
 
-                return sprintf("{if isLinkCurrent('%s')}%s{/if}", $condition, $match['content']);
+                return sprintf('{if isLinkCurrent(%s%s%s)}%s{/if}', $quoteChar, $condition, $quoteChar, $match['content']);
             }
         );
     }
