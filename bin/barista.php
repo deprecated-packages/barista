@@ -17,5 +17,9 @@ array_shift($inputArgs);
 
 $filePaths = $inputArgs;
 
+if ($filePaths === []) {
+    exit('Provide file/dir paths to analyze' . PHP_EOL);
+}
+
 $result = $latteAnalyzer->run($filePaths);
 exit($result);
