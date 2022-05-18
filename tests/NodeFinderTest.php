@@ -4,11 +4,10 @@ declare(strict_types=1);
 
 namespace Barista\Tests;
 
+use Barista\DI\BaristaContainerFactory;
 use Barista\LatteParser\LatteParser;
 use Barista\NodeFinder;
 use Latte\Compiler\Nodes\TextNode;
-use Latte\Compiler\TemplateLexer;
-use Latte\Compiler\TemplateParser;
 use PHPUnit\Framework\TestCase;
 
 final class NodeFinderTest extends TestCase
@@ -19,11 +18,11 @@ final class NodeFinderTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->latteParser = new LatteParser(
-            new TemplateLexer(),
-            new TemplateParser(),
-        );
-        $this->nodeFinder = new NodeFinder();
+        $baristaContainerFactory = new BaristaContainerFactory();
+        $container = $baristaContainerFactory->create();
+
+        $this->latteParser = $container->getByType(LatteParser::class);
+        $this->nodeFinder = $container->getByType(NodeFinder::class);
     }
 
     public function test(): void

@@ -2,6 +2,7 @@ services:
     - Barista\LatteParser\LatteParser
     - Barista\Analyzer\LatteAnalyzer
     - Barista\NodeTraverser\LatteNodeTraverser
+    - Barista\NodeFinder
 
     - Latte\Compiler\TemplateParser
     - Latte\Compiler\TemplateLexer
