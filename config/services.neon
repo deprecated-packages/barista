@@ -1,25 +1,18 @@
+# autodiscovery, see https://doc.nette.org/en/dependency-injection/configuration#toc-search
+search:
+    in: src
+    exclude:
+        classes:
+            - Barista\DI\BaristaContainerFactory
+
 services:
-    # parser
-    - Barista\LatteParser\LatteParser
     - Latte\Compiler\TemplateParser
     - Latte\Compiler\TemplateLexer
-
-    # traverser
-    - Barista\Analyzer\LatteAnalyzer
-    - Barista\NodeTraverser\LatteNodeTraverser
-    - Barista\NodeFinder
     - Latte\Compiler\NodeTraverser
 
-    # upgrader
-    - Barista\LatteUpgrader
-    - Barista\Upgrade\IfCurrentLatteSyntaxUpgrader
-    - Barista\Upgrade\TranslateMacroLatteSyntaxUpgrader
-    - Barista\FileSystem\LatteFilesFinder
     - Symplify\SmartFileSystem\FileSystemFilter
 
     # console
-    - Barista\Command\UpgradeCommand
-    - Barista\Console\ApplicationFactory
     -
         class: Symfony\Component\Console\Application
         factory: [@Barista\Console\ApplicationFactory, 'create']
