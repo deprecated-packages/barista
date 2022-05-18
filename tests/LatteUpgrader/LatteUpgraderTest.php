@@ -2,14 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Barista\Tests\Upgrade\TranslateMacroUpgrader;
+namespace Barista\Tests\LatteUpgrader;
 
 use Barista\DI\BaristaContainerFactory;
 use Barista\LatteUpgrader;
+use Iterator;
 use Nette\Utils\FileSystem;
 use PHPUnit\Framework\TestCase;
 
-final class TranslateMacroUpgraderTest extends TestCase
+final class LatteUpgraderTest extends TestCase
 {
     private LatteUpgrader $latteUpgrader;
 
@@ -21,13 +22,22 @@ final class TranslateMacroUpgraderTest extends TestCase
         $this->latteUpgrader = $container->getByType(LatteUpgrader::class);
     }
 
-    public function test(): void
+    /**
+     * @dataProvider provideData()
+     */
+    public function test(string $oldContent, string $expectedContent): void
     {
-        $fileContents = FileSystem::read(__DIR__ . '/Fixture/old_file.latte');
-        [$oldContent, $expectedContent] = explode("-----\n", $fileContents);
-
         $upgradedContent = $this->latteUpgrader->upgradeFileContent($oldContent);
 
         $this->assertSame($expectedContent, $upgradedContent);
+    }
+
+    public function provideData(): Iterator
+    {
+        $fileContents = FileSystem::read(__DIR__ . '/Fixture/bare_underscore_translate.latte');
+        yield explode("-----\n", $fileContents);
+
+        $fileContents = FileSystem::read(__DIR__ . '/Fixture/if_current.latte');
+        yield explode("-----\n", $fileContents);
     }
 }
