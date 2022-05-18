@@ -11,4 +11,6 @@ $baristaContainerFactory = new BaristaContainerFactory();
 $container = $baristaContainerFactory->create();
 
 $application = $container->getByType(Application::class);
-$application->run();
+$resultCode = $application->run();
+
+exit($resultCode);
