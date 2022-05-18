@@ -21,7 +21,14 @@ final class IfCurrentLatteSyntaxUpgrader implements LatteSyntaxUpgraderInterface
             $fileContent,
             self::IF_CURRENT_REGEX,
             function (array $match): string {
-                return sprintf("{if isLinkCurrent('%s')}%s{/if}", $match['condition'], $match['content']);
+                $condition = $match['condition'];
+
+                // remove extra quotes if used
+                if (str_starts_with($condition, "'") && str_ends_with($condition, "'")) {
+                    $condition = trim($condition, "'");
+                }
+
+                return sprintf("{if isLinkCurrent('%s')}%s{/if}", $condition, $match['content']);
             }
         );
     }

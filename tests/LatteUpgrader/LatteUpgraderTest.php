@@ -7,8 +7,9 @@ namespace Barista\Tests\LatteUpgrader;
 use Barista\DI\BaristaContainerFactory;
 use Barista\LatteUpgrader;
 use Iterator;
-use Nette\Utils\FileSystem;
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\Finder\SplFileInfo;
+use Symplify\EasyTesting\DataProvider\StaticFixtureFinder;
 
 final class LatteUpgraderTest extends TestCase
 {
@@ -25,19 +26,16 @@ final class LatteUpgraderTest extends TestCase
     /**
      * @dataProvider provideData()
      */
-    public function test(string $oldContent, string $expectedContent): void
+    public function test(SplFileInfo $fileInfo): void
     {
-        $upgradedContent = $this->latteUpgrader->upgradeFileContent($oldContent);
+        [$oldContent, $expectedContent] = explode("-----\n", $fileInfo->getContents());
 
+        $upgradedContent = $this->latteUpgrader->upgradeFileContent($oldContent);
         $this->assertSame($expectedContent, $upgradedContent);
     }
 
     public function provideData(): Iterator
     {
-        $fileContents = FileSystem::read(__DIR__ . '/Fixture/bare_underscore_translate.latte');
-        yield explode("-----\n", $fileContents);
-
-        $fileContents = FileSystem::read(__DIR__ . '/Fixture/if_current.latte');
-        yield explode("-----\n", $fileContents);
+        return StaticFixtureFinder::yieldDirectoryExclusively(__DIR__ . '/Fixture', '*.latte');
     }
 }

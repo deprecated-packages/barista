@@ -6,6 +6,9 @@ namespace Barista;
 
 use Barista\Contract\LatteSyntaxUpgraderInterface;
 
+/**
+ * @see \Barista\Tests\LatteUpgrader\LatteUpgraderTest
+ */
 final class LatteUpgrader
 {
     /**
