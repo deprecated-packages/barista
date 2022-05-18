@@ -8,7 +8,6 @@ use Latte\Compiler\Nodes\TemplateNode;
 use Latte\Compiler\TemplateLexer;
 use Latte\Compiler\TemplateParser;
 use Latte\Essential\CoreExtension;
-use Latte\Sandbox\SandboxExtension;
 use Nette\Utils\FileSystem;
 
 final class LatteParser
@@ -17,9 +16,26 @@ final class LatteParser
         private readonly TemplateLexer $templateLexer = new TemplateLexer(),
         private readonly TemplateParser $templateParser = new TemplateParser(),
     ) {
+        $extensions = [];
+
+        if (class_exists('Nette\Bridges\ApplicationLatte\UIExtension')) {
+            $extensions[] = new \Nette\Bridges\ApplicationLatte\UIExtension(null);
+        }
+
+        if (class_exists('Nette\Bridges\ApplicationLatte\TranslatorExtension')) {
+            $extensions[] = new \Nette\Bridges\ApplicationLatte\TranslatorExtension(null);
+        }
+
+        if (class_exists('Nette\Bridges\CacheLatte\CacheExtension') && class_exists('Nette\Caching\Storages\DevNullStorage')) {
+            $extensions[] = new \Nette\Bridges\CacheLatte\CacheExtension(new \Nette\Caching\Storages\DevNullStorage());
+        }
+
+        if (class_exists('Nette\Bridges\FormsLatte\FormsExtension')) {
+            $extensions[] = new \Nette\Bridges\FormsLatte\FormsExtension();
+        }
+
         $extensions = [
             new CoreExtension(),
-            new SandboxExtension(),
         ];
 
         foreach ($extensions as $extension) {
