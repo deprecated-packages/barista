@@ -10,7 +10,8 @@ use Latte\Compiler\Nodes\TemplateNode;
 use Latte\Compiler\NodeTraverser;
 
 /**
- * Same as native one, just object oriented
+ * Same as native one, just object oriented.
+ * Use services of LatteNodeVisitorInterface type to traverse.
  *
  * @see \Barista\Tests\NodeTraverser\LatteNodeTraverserTest
  */

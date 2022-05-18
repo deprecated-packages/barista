@@ -1,0 +1,2 @@
+services:
+    - Barista\Tests\NodeTraverser\NodeVisitor\DummyLatteNodeVisitor
