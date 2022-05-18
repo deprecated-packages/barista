@@ -44,13 +44,12 @@ final class LintCommand extends Command
         $paths = (array) $input->getOption(Option::PATHS);
         $latteFileInfos = $this->latteFilesFinder->find($paths);
 
-        $linter = new Linter($latteEngine);
+        $noteMessage = sprintf('Linting %d files...', count($latteFileInfos));
+        $this->symfonyStyle->note($noteMessage);
 
-        foreach ($latteFileInfos as $latteFileInfo) {
-            $linter->lintLatte($latteFileInfo->getRealPath());
-        }
+        $hasFoundErrors = $this->lintFileInfos($latteEngine, $latteFileInfos);
 
-        return self::SUCCESS;
+        return $hasFoundErrors ? self::FAILURE : self::SUCCESS;
     }
 
     private function provideCustomLatteEngine(InputInterface $input): Engine
@@ -68,5 +67,24 @@ final class LintCommand extends Command
         }
 
         return $latteEngine;
+    }
+
+    /**
+     * @param \SplFileInfo[] $latteFileInfos
+     */
+    private function lintFileInfos(Engine $latteEngine, array $latteFileInfos): bool
+    {
+        $linter = new Linter($latteEngine);
+
+        $hasFoundErrors = false;
+
+        foreach ($latteFileInfos as $latteFileInfo) {
+            $isFileClean = $linter->lintLatte($latteFileInfo->getRealPath());
+            if ($isFileClean === false) {
+                $hasFoundErrors = true;
+            }
+        }
+
+        return $hasFoundErrors;
     }
 }
