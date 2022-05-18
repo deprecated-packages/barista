@@ -10,16 +10,26 @@ use Barista\DI\BaristaContainerFactory;
 $baristaContainerFactory = new BaristaContainerFactory();
 $container = $baristaContainerFactory->create();
 
-$latteAnalyzer = $container->getByType(LatteAnalyzer::class);
-
-$inputArgs = $argv;
-array_shift($inputArgs);
-
-$filePaths = $inputArgs;
-
-if ($filePaths === []) {
-    exit('Provide file/dir paths to analyze' . PHP_EOL);
+$commandNames = $container->findByType(\Symfony\Component\Console\Command\Command::class);
+$commands = [];
+foreach ($commandNames as $commandName) {
+    $commands[] = $container->getByName($commandName);
 }
 
-$result = $latteAnalyzer->run($filePaths);
-exit($result);
+$application = new \Symfony\Component\Console\Application();
+$application->addCommands($commands);
+$application->run();
+
+//$latteAnalyzer = $container->getByType(LatteAnalyzer::class);
+//
+//$inputArgs = $argv;
+//array_shift($inputArgs);
+//
+//$filePaths = $inputArgs;
+//
+//if ($filePaths === []) {
+//    exit('Provide file/dir paths to analyze' . PHP_EOL);
+//}
+//
+//$result = $latteAnalyzer->run($filePaths);
+//exit($result);

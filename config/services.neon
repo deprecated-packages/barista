@@ -16,3 +16,6 @@ services:
     - Barista\Upgrade\TranslateMacroLatteSyntaxUpgrader
     - Barista\FileSystem\LatteFilesFinder
     - Symplify\SmartFileSystem\FileSystemFilter
+
+    # console
+    - Barista\Command\UpgradeCommand
