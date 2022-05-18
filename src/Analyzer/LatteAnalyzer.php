@@ -16,16 +16,14 @@ final class LatteAnalyzer
     }
 
     /**
-     * @param string[] $filePaths
+     * @param \SplFileInfo[] $latteFileInfos
      */
-    public function run(array $filePaths): int
+    public function run(array $latteFileInfos): void
     {
-        foreach ($filePaths as $filePath) {
-            $templateNode = $this->latteParser->parseFile($filePath);
+        foreach ($latteFileInfos as $latteFileInfo) {
+            $templateNode = $this->latteParser->parseFile($latteFileInfo->getRealPath());
+
             $this->latteNodeTraverser->traverseNode($templateNode);
         }
-
-        // success
-        return 0;
     }
 }

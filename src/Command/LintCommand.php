@@ -6,34 +6,22 @@ namespace Barista\Command;
 
 use Barista\Configuration\Option;
 use Barista\Exception\ShouldNotHappenException;
-use Barista\FileSystem\LatteFilesFinder;
 use Latte\Engine;
 use Latte\Tools\Linter;
-use Symfony\Component\Console\Command\Command;
-use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Console\Style\SymfonyStyle;
 
 /**
  * Engine aware extension of native Linter:
  * https://github.com/nette/latte/blob/master/src/Tools/Linter.php
  */
-final class LintCommand extends Command
+final class LintCommand extends AbstractBaristaCommand
 {
-    public function __construct(
-        private SymfonyStyle $symfonyStyle,
-        private LatteFilesFinder $latteFilesFinder,
-    ) {
-        parent::__construct();
-    }
-
     protected function configure(): void
     {
         $this->setName('lint');
         $this->setDescription('Lint your Latte files with your own Latte\Engine');
-        $this->addArgument(Option::PATHS, InputArgument::IS_ARRAY | InputArgument::REQUIRED, 'Path to your Latte files or directories');
         $this->addOption(Option::LATTE_PROVIDER, null, InputOption::VALUE_REQUIRED, 'Path to file that provides Latte engine for linter');
     }
 

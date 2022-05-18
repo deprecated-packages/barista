@@ -5,22 +5,16 @@ declare(strict_types=1);
 namespace Barista\Command;
 
 use Barista\Configuration\Option;
-use Barista\FileSystem\LatteFilesFinder;
 use Barista\LatteUpgrader;
 use Nette\Utils\FileSystem;
-use Symfony\Component\Console\Command\Command;
-use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Console\Style\SymfonyStyle;
 use Symplify\PackageBuilder\Console\Output\ConsoleDiffer;
 
-final class UpgradeCommand extends Command
+final class UpgradeCommand extends AbstractBaristaCommand
 {
     public function __construct(
-        private LatteFilesFinder $latteFilesFinder,
-        private SymfonyStyle $symfonyStyle,
         private LatteUpgrader $latteUpgrader,
         private ConsoleDiffer $consoleDiffer,
     ) {
@@ -31,15 +25,14 @@ final class UpgradeCommand extends Command
     {
         $this->setName('upgrade');
         $this->setDescription('Upgrade what you can from Latte 2 to 3');
-        $this->addArgument(Option::PATHS, InputArgument::IS_ARRAY | InputArgument::REQUIRED, 'Add description');
         $this->addOption(Option::DRY_RUN, null, InputOption::VALUE_NONE, 'Do not change file content, just dry run');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $paths = (array) $input->getArgument(Option::PATHS);
         $isDryRun = (bool) $input->getOption(Option::DRY_RUN);
 
+        $paths = (array) $input->getArgument(Option::PATHS);
         $latteFileInfos = $this->latteFilesFinder->find($paths);
 
         $filesNote = sprintf('Processing %d files', count($latteFileInfos));
