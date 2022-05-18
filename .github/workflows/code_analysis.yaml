@@ -17,9 +17,12 @@ jobs:
                         run: composer phpstan
 
                     -
+                        name: 'Bin Run'
+                        run: php bin/barista.php
+
+                    -
                         name: 'Composer Validate'
                         run: composer validate
-
 
                     -
                         name: 'Coding Standard'

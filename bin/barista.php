@@ -4,11 +4,18 @@ declare(strict_types=1);
 
 require __DIR__ . '/../vendor/autoload.php';
 
-use Barista\LatteAnalyzer;
-use Barista\LatteParser\LatteParser;
+use Barista\Analyzer\LatteAnalyzer;
+use Barista\DI\BaristaContainerFactory;
 
-$latteAnalyzer = new LatteAnalyzer(new LatteParser());
-$latteAnalyzer->run([
-    __DIR__ . '/../fixture/a-with-attributes.latte',
-    __DIR__ . '/../fixture/with-variable-inside.latte',
-]);
+$baristaContainerFactory = new BaristaContainerFactory();
+$container = $baristaContainerFactory->create();
+
+$latteAnalyzer = $container->getByType(LatteAnalyzer::class);
+
+$inputArgs = $argv;
+array_shift($inputArgs);
+
+$filePaths = $inputArgs;
+
+$result = $latteAnalyzer->run($filePaths);
+exit($result);

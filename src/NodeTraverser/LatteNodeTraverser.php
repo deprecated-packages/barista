@@ -21,7 +21,7 @@ final class LatteNodeTraverser
      */
     public function __construct(
         private array $latteNodeVisitors,
-        private NodeTraverser $nodeTraverser = new NodeTraverser(),
+        private NodeTraverser $nodeTraverser,
     ) {
     }
 
