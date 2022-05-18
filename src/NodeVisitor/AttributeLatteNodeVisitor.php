@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Barista\NodeVisitor;
 
 use Barista\Contract\LatteNodeVisitorInterface;
-use Barista\Printer\AttributeNodeValuePrinter;
 use Latte\Compiler\Node;
 use Latte\Compiler\Nodes\Html\AttributeNode;
 use Latte\Compiler\Nodes\TextNode;
@@ -15,11 +14,6 @@ use Latte\Compiler\Nodes\TextNode;
  */
 final class AttributeLatteNodeVisitor implements LatteNodeVisitorInterface
 {
-    public function __construct(
-        private AttributeNodeValuePrinter $attributeNodeValuePrinter = new AttributeNodeValuePrinter()
-    ) {
-    }
-
     public function getNodeType(): string
     {
         return AttributeNode::class;
@@ -39,10 +33,8 @@ final class AttributeLatteNodeVisitor implements LatteNodeVisitorInterface
             return null;
         }
 
-        $attributeContent = $this->attributeNodeValuePrinter->print($node);
-
         // @todo analyse here
-        dump($attributeContent);
+        dump($node);
 
         return null;
     }
