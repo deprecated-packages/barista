@@ -13,10 +13,12 @@ use Nette\Utils\FileSystem;
 final class LatteParser
 {
     public function __construct(
-        private readonly TemplateLexer $templateLexer = new TemplateLexer(),
-        private readonly TemplateParser $templateParser = new TemplateParser(),
+        private TemplateLexer $templateLexer,
+        private TemplateParser $templateParser,
     ) {
-        $extensions = [];
+        $extensions = [
+            new CoreExtension(),
+        ];
 
         if (class_exists('Nette\Bridges\ApplicationLatte\UIExtension')) {
             $extensions[] = new \Nette\Bridges\ApplicationLatte\UIExtension(null);
@@ -33,10 +35,6 @@ final class LatteParser
         if (class_exists('Nette\Bridges\FormsLatte\FormsExtension')) {
             $extensions[] = new \Nette\Bridges\FormsLatte\FormsExtension();
         }
-
-        $extensions = [
-            new CoreExtension(),
-        ];
 
         foreach ($extensions as $extension) {
             $this->templateParser->addTags($extension->getTags());

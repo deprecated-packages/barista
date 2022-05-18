@@ -7,6 +7,8 @@ namespace Barista\Tests;
 use Barista\LatteParser\LatteParser;
 use Barista\NodeFinder;
 use Latte\Compiler\Nodes\TextNode;
+use Latte\Compiler\TemplateLexer;
+use Latte\Compiler\TemplateParser;
 use PHPUnit\Framework\TestCase;
 
 final class NodeFinderTest extends TestCase
@@ -17,7 +19,10 @@ final class NodeFinderTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->latteParser = new LatteParser();
+        $this->latteParser = new LatteParser(
+            new TemplateLexer(),
+            new TemplateParser(),
+        );
         $this->nodeFinder = new NodeFinder();
     }
 
