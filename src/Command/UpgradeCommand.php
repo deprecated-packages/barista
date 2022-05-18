@@ -13,13 +13,14 @@ final class UpgradeCommand extends Command
     // 1) @take paths
     // 2) run upgrader
     // 3) dump or dry-run :)
-    protected function configure()
+    protected function configure(): void
     {
         $this->setName('upgrade');
         $this->setDescription('Upgrade from Latte 2 to 3');
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
+        return self::SUCCESS;
     }
 }
