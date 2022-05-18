@@ -32,8 +32,7 @@ final class UpgradeCommand extends AbstractBaristaCommand
     {
         $isDryRun = (bool) $input->getOption(Option::DRY_RUN);
 
-        $paths = (array) $input->getArgument(Option::PATHS);
-        $latteFileInfos = $this->latteFilesFinder->find($paths);
+        $latteFileInfos = $this->findLatteFileInfos($input);
 
         $filesNote = sprintf('Processing %d files', count($latteFileInfos));
         $this->symfonyStyle->note($filesNote);

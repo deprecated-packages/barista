@@ -27,14 +27,12 @@ final class LintCommand extends AbstractBaristaCommand
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $latteEngine = $this->provideCustomLatteEngine($input);
-
-        $paths = (array) $input->getOption(Option::PATHS);
-        $latteFileInfos = $this->latteFilesFinder->find($paths);
+        $latteFileInfos = $this->findLatteFileInfos($input);
 
         $noteMessage = sprintf('Linting %d files...', count($latteFileInfos));
         $this->symfonyStyle->note($noteMessage);
 
+        $latteEngine = $this->provideCustomLatteEngine($input);
         $hasFoundErrors = $this->lintFileInfos($latteEngine, $latteFileInfos);
 
         return $hasFoundErrors ? self::FAILURE : self::SUCCESS;
