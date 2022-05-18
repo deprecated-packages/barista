@@ -4,9 +4,8 @@ declare(strict_types=1);
 
 namespace Barista\Tests\LatteParser;
 
+use Barista\DI\BaristaContainerFactory;
 use Barista\LatteParser\LatteParser;
-use Latte\Compiler\TemplateLexer;
-use Latte\Compiler\TemplateParser;
 use Nette\Bridges\ApplicationLatte\Nodes\TranslateNode;
 use PHPUnit\Framework\TestCase;
 
@@ -16,10 +15,10 @@ final class LatteParserTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->latteParser =  new LatteParser(
-            new TemplateLexer(),
-            new TemplateParser(),
-        );
+        $baristaContainerFactory = new BaristaContainerFactory();
+        $container = $baristaContainerFactory->create();
+
+        $this->latteParser = $container->getByType(LatteParser::class);
     }
 
     public function test(): void

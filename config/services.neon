@@ -1,0 +1,4 @@
+services:
+    - Barista\LatteParser\LatteParser
+    - Latte\Compiler\TemplateParser
+    - Latte\Compiler\TemplateLexer
