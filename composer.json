@@ -12,7 +12,8 @@
         "nette/di": "^3.0",
         "nette/bootstrap": "^3.1",
         "symfony/console": "^6.0",
-        "symplify/smart-file-system": "^10.2"
+        "symplify/smart-file-system": "^10.2",
+        "symplify/package-builder": "^10.2"
     },
     "autoload": {
         "psr-4": {

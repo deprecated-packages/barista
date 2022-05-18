@@ -4,15 +4,24 @@ search:
     exclude:
         classes:
             - Barista\DI\BaristaContainerFactory
+            - Barista\Configuration\Option
 
 services:
     - Latte\Compiler\TemplateParser
     - Latte\Compiler\TemplateLexer
     - Latte\Compiler\NodeTraverser
 
+    - Symplify\PackageBuilder\Console\Output\ConsoleDiffer
+    - SebastianBergmann\Diff\Differ
+    - Symplify\PackageBuilder\Console\Formatter\ColorConsoleDiffFormatter
     - Symplify\SmartFileSystem\FileSystemFilter
 
     # console
     -
         class: Symfony\Component\Console\Application
         factory: [@Barista\Console\ApplicationFactory, 'create']
+
+    - Symplify\PackageBuilder\Console\Style\SymfonyStyleFactory
+    -
+        class: Symfony\Component\Console\Style\SymfonyStyle
+        factory: [@Symplify\PackageBuilder\Console\Style\SymfonyStyleFactory, 'create']
