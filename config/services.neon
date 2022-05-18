@@ -1,9 +1,16 @@
 services:
+    # parser
     - Barista\LatteParser\LatteParser
+    - Latte\Compiler\TemplateParser
+    - Latte\Compiler\TemplateLexer
+
+    # traverser
     - Barista\Analyzer\LatteAnalyzer
     - Barista\NodeTraverser\LatteNodeTraverser
     - Barista\NodeFinder
-
-    - Latte\Compiler\TemplateParser
-    - Latte\Compiler\TemplateLexer
     - Latte\Compiler\NodeTraverser
+
+    # upgrader
+    - Barista\LatteUpgrader
+    - Barista\Upgrade\IfCurrentLatteSyntaxUpgrader
+    # @todo translate ugprader
