@@ -19,3 +19,7 @@ services:
 
     # console
     - Barista\Command\UpgradeCommand
+    - Barista\Console\ApplicationFactory
+    -
+        class: Symfony\Component\Console\Application
+        factory: [@Barista\Console\ApplicationFactory, 'create']
