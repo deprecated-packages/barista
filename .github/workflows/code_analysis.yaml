@@ -21,6 +21,14 @@ jobs:
                         run: bin/barista
 
                     -
+                        name: 'Lint run on Single File'
+                        run: bin/barista lint latte-files/some-directory/some-file.latte
+
+                    -
+                        name: 'Lint run on Single Directory'
+                        run: bin/barista lint latte-files/some-directory
+
+                    -
                         name: 'Composer Validate'
                         run: composer validate
 
