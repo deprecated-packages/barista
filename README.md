@@ -27,10 +27,17 @@ $latteFactory = $container->getByType(LatteFactory::class);
 return $latteFactory->create();
 ```
 
-Then provide this file via `--latte-provider` option:
+Create `barista.neon` in your root and configure parameter:
+
+```yaml
+parameters:
+    latteProviderFile: "tests/latte-provider.php"
+```
+
+Then run linting command on your paths:
 
 ```bash
-vendor/bin/barista lint templates/some-file.latte --latte-provider tests/latte-provider.php
+vendor/bin/barista lint templates/some-file.latte
 ```
 
 Then linter knows about all your macros and functions and reports only real bugs!

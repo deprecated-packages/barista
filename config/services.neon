@@ -10,7 +10,15 @@ decorator:
     Barista\Command\AbstractBaristaCommand:
         inject: true
 
+parameters:
+    latteProviderFile: ''
+
 services:
+    -
+        class: Barista\Command\LintCommand
+        arguments:
+            latteProviderFile: %latteProviderFile%
+
     - Latte\Compiler\TemplateParser
     - Latte\Compiler\TemplateLexer
     - Latte\Compiler\NodeTraverser
