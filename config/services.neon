@@ -1,6 +1,6 @@
 # autodiscovery, see https://doc.nette.org/en/dependency-injection/configuration#toc-search
 search:
-    in: src
+    in: %appDir%/../../src
     exclude:
         classes:
             - Barista\DI\BaristaContainerFactory
