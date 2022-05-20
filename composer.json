@@ -18,7 +18,8 @@
     "autoload": {
         "psr-4": {
             "Barista\\": "src"
-        }
+        },
+        "classmap": ["stubs"]
     },
     "autoload-dev": {
         "psr-4": {
