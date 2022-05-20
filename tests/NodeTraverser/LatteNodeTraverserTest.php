@@ -22,7 +22,7 @@ final class LatteNodeTraverserTest extends TestCase
     {
         $baristaContainerFactory = new BaristaContainerFactory();
         $container = $baristaContainerFactory->create([
-            __DIR__ . '/config/custom_node_visitor.neon'
+            __DIR__ . '/config/custom_node_visitor.neon',
         ]);
 
         $this->latteParser = $container->getByType(LatteParser::class);
