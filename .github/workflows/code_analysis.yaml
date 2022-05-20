@@ -22,11 +22,11 @@ jobs:
 
                     -
                         name: 'Lint run on Single File'
-                        run: bin/barista lint latte-files/some-directory/some-file.latte
+                        run: bin/barista lint tests/latte-files/some-file.latte
 
                     -
                         name: 'Lint run on Single Directory'
-                        run: bin/barista lint latte-files/some-directory
+                        run: bin/barista lint tests/latte-files/some-directory
 
                     -
                         name: 'Composer Validate'
