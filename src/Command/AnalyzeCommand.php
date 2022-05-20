@@ -20,6 +20,8 @@ final class AnalyzeCommand extends AbstractBaristaCommand
     {
         $this->setName('analyze');
         $this->setDescription('Analyze your Latte files using node visitors');
+
+        parent::configure();
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int

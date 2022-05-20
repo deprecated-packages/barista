@@ -23,6 +23,8 @@ final class LintCommand extends AbstractBaristaCommand
         $this->setName('lint');
         $this->setDescription('Lint your Latte files with your own Latte\Engine');
         $this->addOption(Option::LATTE_PROVIDER, null, InputOption::VALUE_REQUIRED, 'Path to file that provides Latte engine for linter');
+
+        parent::configure();
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int

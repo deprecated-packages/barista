@@ -26,6 +26,8 @@ final class UpgradeCommand extends AbstractBaristaCommand
         $this->setName('upgrade');
         $this->setDescription('Upgrade what you can from Latte 2 to 3');
         $this->addOption(Option::DRY_RUN, null, InputOption::VALUE_NONE, 'Do not change file content, just dry run');
+
+        parent::configure();
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
