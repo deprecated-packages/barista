@@ -6,6 +6,7 @@ namespace Barista\Command;
 
 use Barista\Exception\ShouldNotHappenException;
 use Latte\Engine;
+use Latte\Loaders\StringLoader;
 use Latte\Tools\Linter;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -37,9 +38,20 @@ final class LintCommand extends AbstractBaristaCommand
         $this->symfonyStyle->note($noteMessage);
 
         $latteEngine = $this->provideCustomLatteEngine();
-        $hasFoundErrors = $this->lintFileInfos($latteEngine, $latteFileInfos);
 
-        return $hasFoundErrors ? self::FAILURE : self::SUCCESS;
+        // this allows to pass directly latte string content
+        $latteEngine->setLoader(new StringLoader());
+
+        $errorCount = $this->lintFileInfos($latteEngine, $latteFileInfos);
+
+        if ($errorCount !== 0) {
+            $errorMessage = sprintf('Found %d errors', $errorCount);
+            $this->symfonyStyle->error($errorMessage);
+            return self::FAILURE;
+        }
+
+        $this->symfonyStyle->success('Your Latte files are clean!');
+        return self::SUCCESS;
     }
 
     private function provideCustomLatteEngine(): Engine
@@ -61,19 +73,19 @@ final class LintCommand extends AbstractBaristaCommand
     /**
      * @param \SplFileInfo[] $latteFileInfos
      */
-    private function lintFileInfos(Engine $latteEngine, array $latteFileInfos): bool
+    private function lintFileInfos(Engine $latteEngine, array $latteFileInfos): int
     {
         $linter = new Linter($latteEngine);
 
-        $hasFoundErrors = false;
+        $errorCount = 0;
 
         foreach ($latteFileInfos as $latteFileInfo) {
             $isFileClean = $linter->lintLatte($latteFileInfo->getRealPath());
             if ($isFileClean === false) {
-                $hasFoundErrors = true;
+                ++$errorCount;
             }
         }
 
-        return $hasFoundErrors;
+        return $errorCount;
     }
 }

@@ -26,10 +26,15 @@ final class LatteFilesFinder
         $directories = $this->fileSystemFilter->filterDirectories($filesOrDirectories);
         $files = $this->fileSystemFilter->filterFiles($filesOrDirectories);
 
-        $finder = Finder::findFiles('*.latte')
-            ->from(...$directories);
+        $foundFileInfos = [];
 
-        $foundFileInfos = iterator_to_array($finder);
+        if ($directories !== []) {
+            $finder = Finder::findFiles('*.latte')
+                ->from(...$directories);
+
+            $foundFileInfos = iterator_to_array($finder);
+        }
+
         foreach ($files as $file) {
             $foundFileInfos[] = new \SplFileInfo($file);
         }

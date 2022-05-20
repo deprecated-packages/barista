@@ -22,7 +22,7 @@ jobs:
 
                     -
                         name: 'Lint run on Single File'
-                        run: bin/barista lint tests/latte-files/some-file.latte
+                        run: bin/barista lint tests/latte-files/single-file.latte
 
                     -
                         name: 'Lint run on Single Directory'
