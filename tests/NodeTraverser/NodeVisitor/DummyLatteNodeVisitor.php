@@ -23,9 +23,6 @@ final class DummyLatteNodeVisitor implements LatteNodeVisitorInterface
         return AttributeNode::class;
     }
 
-    /**
-     * @param AttributeNode $node
-     */
     public function enterNode(Node $node): int|null|Node
     {
         $this->attributeNodes[] = $node;
