@@ -1,5 +1,5 @@
 # custom config that is loaded from the project root
 
 parameters:
-    latteProviderFile:
+    latteProviderFile: tests/latte-provider.php
 
