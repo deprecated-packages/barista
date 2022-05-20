@@ -3,7 +3,7 @@
     "license": "MIT",
     "description": "The Barista explores every Latte (file) for strict quality",
     "bin": [
-        "bin/barista.php"
+        "bin/barista"
     ],
     "require": {
         "php": "^8.0",
