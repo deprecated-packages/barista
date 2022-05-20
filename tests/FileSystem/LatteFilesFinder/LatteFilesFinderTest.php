@@ -27,7 +27,7 @@ final class LatteFilesFinderTest extends TestCase
             __DIR__ . '/Fixture/another-dir',
         ]);
 
-        $this->assertCount(2, $foundLatteFiles);
+        $this->assertCount(3, $foundLatteFiles);
         $this->assertContainsOnlyInstancesOf(\SplFileInfo::class, $foundLatteFiles);
     }
 }
