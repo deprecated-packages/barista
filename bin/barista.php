@@ -19,8 +19,16 @@ foreach ($autoloadPaths as $autoloadPath) {
 use Barista\DI\BaristaContainerFactory;
 use Symfony\Component\Console\Application;
 
+// load with custom config
+$rootBaristaConfig = getcwd() . '/barista.neon';
+
+$configs = [];
+if (file_exists($rootBaristaConfig)) {
+    $configs[] = $rootBaristaConfig;
+}
+
 $baristaContainerFactory = new BaristaContainerFactory();
-$container = $baristaContainerFactory->create();
+$container = $baristaContainerFactory->create($configs);
 
 $application = $container->getByType(Application::class);
 $resultCode = $application->run();
