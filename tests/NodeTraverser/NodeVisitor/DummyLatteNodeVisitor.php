@@ -8,6 +8,9 @@ use Barista\Contract\LatteNodeVisitorInterface;
 use Latte\Compiler\Node;
 use Latte\Compiler\Nodes\Html\AttributeNode;
 
+/**
+ * @implements LatteNodeVisitorInterface<AttributeNode>
+ */
 final class DummyLatteNodeVisitor implements LatteNodeVisitorInterface
 {
     /**
@@ -20,6 +23,9 @@ final class DummyLatteNodeVisitor implements LatteNodeVisitorInterface
         return AttributeNode::class;
     }
 
+    /**
+     * @param AttributeNode $node
+     */
     public function enterNode(Node $node): int|null|Node
     {
         $this->attributeNodes[] = $node;

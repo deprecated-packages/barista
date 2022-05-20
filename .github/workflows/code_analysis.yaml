@@ -18,7 +18,7 @@ jobs:
 
                     -
                         name: 'Bin Run'
-                        run: php bin/barista.php
+                        run: bin/barista
 
                     -
                         name: 'Composer Validate'

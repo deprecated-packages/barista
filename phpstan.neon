@@ -3,9 +3,12 @@ parameters:
 
     paths:
         - src
+        - tests
 
     level: 8
 
     ignoreErrors:
         # exists behind class_exists() check
         - '#Call to method getTags\(\) on an unknown class Nette\\Bridges\\CacheLatte\\CacheExtension#'
+
+        - '#Property Barista\\Tests\\(.*?)::\$(.*?) (.*?) does not accept (.*?)\|null#'
