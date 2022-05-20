@@ -6,6 +6,10 @@ search:
             - Barista\DI\BaristaContainerFactory
             - Barista\Configuration\Option
 
+decorator:
+    Barista\Command\AbstractBaristaCommand:
+        inject: true
+
 services:
     - Latte\Compiler\TemplateParser
     - Latte\Compiler\TemplateLexer
