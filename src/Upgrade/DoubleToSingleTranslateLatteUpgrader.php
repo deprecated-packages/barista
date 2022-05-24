@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Barista\Upgrade;
 
-use Barista\Contract\LatteSyntaxUpgraderInterface;
+use Barista\Contract\LatteUpgraderInterface;
 use Nette\Utils\Strings;
 
-final class TranslateMacroLatteSyntaxUpgrader implements LatteSyntaxUpgraderInterface
+final class DoubleToSingleTranslateLatteUpgrader implements LatteUpgraderInterface
 {
     /**
      * @var string
@@ -21,7 +21,7 @@ final class TranslateMacroLatteSyntaxUpgrader implements LatteSyntaxUpgraderInte
             $fileContent,
             self::UNDERSCORE_REGEX,
             function (array $match): string {
-                return sprintf('{translate}%s{/translate}', $match['content']);
+                return sprintf('{_"%s"}', $match['content']);
             }
         );
     }

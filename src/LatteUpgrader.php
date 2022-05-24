@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Barista;
 
-use Barista\Contract\LatteSyntaxUpgraderInterface;
+use Barista\Contract\LatteUpgraderInterface;
 
 /**
  * @see \Barista\Tests\LatteUpgrader\LatteUpgraderTest
@@ -12,7 +12,7 @@ use Barista\Contract\LatteSyntaxUpgraderInterface;
 final class LatteUpgrader
 {
     /**
-     * @param LatteSyntaxUpgraderInterface[] $latteSyntaxUpgraders
+     * @param LatteUpgraderInterface[] $latteSyntaxUpgraders
      */
     public function __construct(
         private array $latteSyntaxUpgraders

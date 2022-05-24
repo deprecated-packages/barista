@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Barista\Contract;
 
-interface LatteSyntaxUpgraderInterface
+interface LatteUpgraderInterface
 {
     public function upgrade(string $fileContent): string;
 }

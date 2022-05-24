@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Barista\Upgrade;
 
-use Barista\Contract\LatteSyntaxUpgraderInterface;
+use Barista\Contract\LatteUpgraderInterface;
 use Nette\Utils\Strings;
 
-final class IfCurrentLatteSyntaxUpgrader implements LatteSyntaxUpgraderInterface
+final class IfCurrentLatteUpgrader implements LatteUpgraderInterface
 {
     /**
      * @var string

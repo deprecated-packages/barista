@@ -7,7 +7,7 @@ search:
             - Barista\Configuration\Option
         implements:
             # register manually the rules you want to apply
-            - Barista\Contract\LatteSyntaxUpgraderInterface
+            - Barista\Contract\LatteUpgraderInterface
 
 decorator:
     Barista\Command\AbstractBaristaCommand:

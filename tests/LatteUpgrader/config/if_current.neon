@@ -1,2 +1,2 @@
 services:
-    - Barista\Upgrade\IfCurrentLatteSyntaxUpgrader
+    - Barista\Upgrade\IfCurrentLatteUpgrader
