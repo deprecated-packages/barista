@@ -21,7 +21,10 @@ final class DoubleToSingleTranslateLatteUpgrader implements LatteUpgraderInterfa
             $fileContent,
             self::UNDERSCORE_REGEX,
             function (array $match): string {
-                return sprintf('{_"%s"}', $match['content']);
+                $content = $match['content'];
+                $content = Strings::replace($content, '#\"#', '\\\\"');
+
+                return sprintf('{_"%s"}', $content);
             }
         );
     }
