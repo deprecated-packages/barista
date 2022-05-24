@@ -5,6 +5,9 @@ search:
         classes:
             - Barista\DI\BaristaContainerFactory
             - Barista\Configuration\Option
+        implements:
+            # register manually the rules you want to apply
+            - Barista\Contract\LatteSyntaxUpgraderInterface
 
 decorator:
     Barista\Command\AbstractBaristaCommand:

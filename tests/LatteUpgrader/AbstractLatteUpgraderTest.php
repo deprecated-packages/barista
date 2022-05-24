@@ -11,17 +11,23 @@ use PHPUnit\Framework\TestCase;
 use Symfony\Component\Finder\SplFileInfo;
 use Symplify\EasyTesting\DataProvider\StaticFixtureFinder;
 
-final class LatteUpgraderTest extends TestCase
+abstract class AbstractLatteUpgraderTest extends TestCase
 {
     private LatteUpgrader $latteUpgrader;
 
     protected function setUp(): void
     {
         $baristaContainerFactory = new BaristaContainerFactory();
-        $container = $baristaContainerFactory->create();
+        $container = $baristaContainerFactory->create([
+            $this->provideConfig(),
+        ]);
 
         $this->latteUpgrader = $container->getByType(LatteUpgrader::class);
     }
+
+    abstract public function provideConfig(): string;
+
+    abstract public function provideFixtureDirectory(): string;
 
     /**
      * @dataProvider provideData()
@@ -36,6 +42,6 @@ final class LatteUpgraderTest extends TestCase
 
     public function provideData(): Iterator
     {
-        return StaticFixtureFinder::yieldDirectoryExclusively(__DIR__ . '/Fixture', '*.latte');
+        return StaticFixtureFinder::yieldDirectoryExclusively($this->provideFixtureDirectory(), '*.latte');
     }
 }
