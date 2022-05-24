@@ -3,3 +3,5 @@
 parameters:
     latteProviderFile: tests/latte-provider.php
 
+services:
+    - Barista\Upgrade\DoubleToSingleTranslateLatteUpgrader
