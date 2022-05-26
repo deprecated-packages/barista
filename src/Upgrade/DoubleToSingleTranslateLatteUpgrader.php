@@ -17,7 +17,7 @@ final class DoubleToSingleTranslateLatteUpgrader implements LatteUpgraderInterfa
 
     public function upgrade(string $fileContent): string
     {
-        return Strings::replace(
+        $fileContent = Strings::replace(
             $fileContent,
             self::UNDERSCORE_REGEX,
             function (array $match): string {
@@ -27,5 +27,12 @@ final class DoubleToSingleTranslateLatteUpgrader implements LatteUpgraderInterfa
                 return sprintf('{_"%s"}', $content);
             }
         );
+
+        // clear javascript double quotes
+        return Strings::replace($fileContent, '#(?<open><script.*?>)(?<javascript_content>.*?)(?<close><\/script>)#ms', function (array $match) {
+            $content = Strings::replace($match['javascript_content'], '#"(?<translate_content>{_"(.*?)"})"#', '$1');
+
+            return $match['open'] . $content . $match['close'];
+        });
     }
 }
