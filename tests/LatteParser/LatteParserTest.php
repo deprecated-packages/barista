@@ -37,4 +37,14 @@ final class LatteParserTest extends TestCase
         $this->latteParser->parseFile(__DIR__ . '/Fixture/blocks/first_file.latte');
         $this->latteParser->parseFile(__DIR__ . '/Fixture/blocks/second_file.latte');
     }
+
+    /**
+     * @see https://github.com/TomasVotruba/barista/issues/5
+     * @doesNotPerformAssertions
+     */
+    public function testLayoutSecondFile(): void
+    {
+        $this->latteParser->parseFile(__DIR__ . '/Fixture/layout/first_content.latte');
+        $this->latteParser->parseFile(__DIR__ . '/Fixture/layout/second_layout_none.latte');
+    }
 }

@@ -51,6 +51,7 @@ final class LatteParser
     {
         // reset blocks to allow parsing new file with same blocks
         $this->templateParser->blocks = [];
+        $this->templateParser->location = TemplateParser::LocationHead;
 
         return $this->templateParser->parse($code, $this->templateLexer);
     }
