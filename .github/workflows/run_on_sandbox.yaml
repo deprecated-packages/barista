@@ -22,7 +22,7 @@ jobs:
             -   run: composer create-project nette/web-project nette-sandbox --ansi
 
             # 2. add this package as a dependency
-            -   run: composer require barista/barista@dev-main latte/latte:^3 --ansi
+            -   run: composer require barista/barista:dev-main latte/latte:^3 --ansi
                 working-directory: nette-sandbox
 
             # 3. analyze run on nette sandbox templates
