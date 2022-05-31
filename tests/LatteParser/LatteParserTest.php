@@ -29,6 +29,9 @@ final class LatteParserTest extends TestCase
         $this->assertInstanceOf(TranslateNode::class, $templateNode->main->children[0]);
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testFilesWithSameBlock(): void
     {
         $this->latteParser->parseFile(__DIR__ . '/Fixture/blocks/first_file.latte');
