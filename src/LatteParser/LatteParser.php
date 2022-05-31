@@ -49,6 +49,9 @@ final class LatteParser
 
     public function parseCode(string $code): TemplateNode
     {
+        // reset blocks to allow parsing new file with same blocks
+        // $this->templateParser->blocks = [];
+
         return $this->templateParser->parse($code, $this->templateLexer);
     }
 }

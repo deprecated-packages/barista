@@ -28,4 +28,10 @@ final class LatteParserTest extends TestCase
         $this->assertCount(2, $templateNode->main->children);
         $this->assertInstanceOf(TranslateNode::class, $templateNode->main->children[0]);
     }
+
+    public function testFilesWithSameBlock(): void
+    {
+        $this->latteParser->parseFile(__DIR__ . '/Fixture/blocks/first_file.latte');
+        $this->latteParser->parseFile(__DIR__ . '/Fixture/blocks/second_file.latte');
+    }
 }
