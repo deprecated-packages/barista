@@ -1,0 +1,30 @@
+name: Run on Sandbox
+
+on:
+    pull_request: null
+    push:
+        branches:
+            - main
+
+jobs:
+    run_on_sandbox:
+        runs-on: ubuntu-latest
+
+        steps:
+            -   uses: actions/checkout@v2
+            # see https://github.com/shivammathur/setup-php
+            -   uses: shivammathur/setup-php@v2
+                with:
+                    php-version: 8.1
+                    coverage: none
+
+            # 1. create nette sandbox
+            -   run: composer create-project nette/web-project nette-sandbox
+
+            # 2. add this package as a dependency
+            -   run: composer require barista/barista
+                working-directory: nette-sandbox
+
+            # 3. analyze run on nette sandbox templates
+            -   run: vendor/bin/barista analyze app
+                working-directory: nette-sandbox
