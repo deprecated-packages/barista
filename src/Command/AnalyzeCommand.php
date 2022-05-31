@@ -28,8 +28,8 @@ final class AnalyzeCommand extends AbstractBaristaCommand
     {
         $latteFileInfos = $this->findLatteFileInfos($input);
 
-        $noteMessage = sprintf('Analying %d files...', count($latteFileInfos));
-        $this->symfonyStyle->note($noteMessage);
+        $noteMessage = sprintf('Analyzing %d files...', count($latteFileInfos));
+        $this->symfonyStyle->title($noteMessage);
 
         $this->latteAnalyzer->run($latteFileInfos);
 
