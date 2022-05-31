@@ -33,6 +33,8 @@ final class AnalyzeCommand extends AbstractBaristaCommand
 
         $this->latteAnalyzer->run($latteFileInfos);
 
+        $this->symfonyStyle->success('Done');
+
         return self::SUCCESS;
     }
 }
