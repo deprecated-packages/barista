@@ -24,7 +24,9 @@ final class BaristaContainerFactory
         $configurator->setTempDirectory($temporaryDirectory);
 
         // for search extension to work, @see https://github.com/TomasVotruba/barista/issues/3#issuecomment-1142402324
-        $configurator->addParameters(['srcDir' => __DIR__ . '/../../src']);
+        $configurator->addParameters([
+            'srcDir' => __DIR__ . '/../../src',
+        ]);
 
         $configurator->addConfig(__DIR__ . '/../../config/services.neon');
 
