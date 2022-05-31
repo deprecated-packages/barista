@@ -13,7 +13,16 @@
         "nette/bootstrap": "^3.1",
         "symfony/console": "^6.0",
         "symplify/smart-file-system": "^10.2",
-        "symplify/package-builder": "^10.2"
+        "symplify/package-builder": "^10.2",
+        "phpunit/phpunit": "^9.5"
+    },
+    "require-dev": {
+        "tracy/tracy": "^2.9",
+        "symplify/easy-coding-standard": "^10.2",
+        "phpstan/phpstan": "^1.6.8",
+        "nette/forms": "^3.1",
+        "nette/application": "^3.1",
+        "symplify/easy-testing": "^10.2"
     },
     "autoload": {
         "psr-4": {
@@ -25,15 +34,6 @@
         "psr-4": {
             "Barista\\Tests\\": "tests"
         }
-    },
-    "require-dev": {
-        "tracy/tracy": "^2.9",
-        "symplify/easy-coding-standard": "^10.2",
-        "phpstan/phpstan": "^1.6.8",
-        "phpunit/phpunit": "^9.5",
-        "nette/forms": "^3.1",
-        "nette/application": "^3.1",
-        "symplify/easy-testing": "^10.2"
     },
     "scripts": {
         "check-cs": "vendor/bin/ecs --ansi",

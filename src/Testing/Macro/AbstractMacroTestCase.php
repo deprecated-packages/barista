@@ -19,7 +19,7 @@ use Symplify\SmartFileSystem\SmartFileInfo;
 /**
  * @see https://tomasvotruba.com/blog/how-to-test-latte-macro-in-4-steps/
  */
-abstract class AbstractMacroTest extends TestCase
+abstract class AbstractMacroTestCase extends TestCase
 {
     private Engine $latteEngine;
 
