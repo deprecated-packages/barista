@@ -5,6 +5,7 @@ search:
         classes:
             - Barista\DI\BaristaContainerFactory
             - Barista\Configuration\Option
+            - Barista\Testing\Macro\AbstractMacroTestCase
         implements:
             # register manually the rules you want to apply
             - Barista\Contract\LatteUpgraderInterface
